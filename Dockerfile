@@ -1,9 +1,9 @@
-FROM gradle:9.2.1-jdk25
+FROM gradle:9.9.1-jdk25
 
 LABEL maintainer="KRCI Team"
 
-ENV MAKE_VERSION=4.3-4.1build2
-
+# unpinned on purpose: pick up security fixes (exact pins break rebuilds)
+# hadolint ignore=DL3008
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends make=$MAKE_VERSION && \
+    apt-get install -y --no-install-recommends make && \
     rm -rf /var/lib/apt/lists/*
